@@ -1,0 +1,16 @@
+.App-header {
+  background-color: Black;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  padding-left: 1rem;
+}
+
+img {
+  height: 80px;
+  width: auto;
+}
