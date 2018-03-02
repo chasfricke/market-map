@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import MapLayers from './MapLayers';
-import Header from './components/Header'
+import Header from './components/Header';
+import LocationForm from './components/LocationForm';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           See the map below...
         </p>
         <MapLayers />
+        <LocationForm />
       </div>
     );
   }

@@ -5,7 +5,9 @@
   "dependencies": {
     "google-map-react": "^0.32.0",
     "google-maps-react": "^1.1.0",
+    "knex": "^0.14.4",
     "lodash": "^4.17.5",
+    "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
