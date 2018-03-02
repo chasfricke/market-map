@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import MapLayers from './MapLayers';
+import CustomComponent from './components/MapDisplay';
 import Header from './components/Header';
 import LocationForm from './components/LocationForm';
+import LocationList from './components/LocationList';
 
 class App extends Component {
   render() {
@@ -10,10 +11,11 @@ class App extends Component {
       <div className="App">
       <Header />
         <p className="App-intro">
-          See the map below...
+          See the map below for previous drop-offs locations...
         </p>
-        <MapLayers />
+        <CustomComponent />
         <LocationForm />
+        <LocationList />
       </div>
     );
   }
