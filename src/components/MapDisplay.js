@@ -1,51 +1,33 @@
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
   Map,
   TileLayer,
   Marker,
   Popup,
-  PropTypes as MapPropTypes,
+  //PropTypes as MapPropTypes,
 } from 'react-leaflet'
 
-const MyPopupMarker = ({ children, position }) => (
-  <Marker position={position}>
-    <Popup>
-      <span>{children}</span>
-    </Popup>
-  </Marker>
-)
-MyPopupMarker.propTypes = {
-  children: MapPropTypes.children,
-  position: MapPropTypes.latlng,
-}
-
-//changed diplay to block from none
-const MyMarkersList = ({ markers }) => {
-  const items = markers.map(({ key, ...props }) => (
-    <MyPopupMarker key={key} {...props} />
-  ))
-  return <div style={{ display: 'block' }}>{items}</div>
-}
-MyMarkersList.propTypes = {
-  markers: PropTypes.array.isRequired,
-}
-
-export default class CustomComponent extends Component {
+export default class MapDisplay extends Component {
   state = {
-
     lat: 39.731214,
     lng: -104.887431,
     zoom: 13,
   }
+  // L.tileLayer( '//mt{s}.googleapis.com/vt?x={x}&y={y}&z={z}',
+  // {
+  //   maxZoom: 18,
+  //   subdomains: [ 0, 1, 2, 3 ]
+  // } ).addTo( map );
+  //
 
   render() {
-    const center = [this.state.lat, this.state.lng]
-
+    let center = [this.state.lat, this.state.lng]
+    // debug: override center
+    center = [39.731214, -104.887431]
     const markers = [
-      { key: 'marker1', position: [39.731214, -104.887431], children: 'My first popup' },
-      { key: 'marker2', position: [51.51, -0.1], children: 'My second popup' },
-      { key: 'marker3', position: [51.49, -0.05], children: 'My third popup' },
+      { key: 'marker1', position: [39.731214, -104.887431], children: 'Steve & Kate\'s Camp' }
+      
     ]
     return (
       <Map center={center} zoom={this.state.zoom}>
@@ -53,7 +35,14 @@ export default class CustomComponent extends Component {
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MyMarkersList markers={markers} />
+        {markers.map(({ key, position, children }) => (
+          <Marker key={key} position={position}>
+            {/* <Icon imageUrl={'https://user-images.githubusercontent.com/32273138/36926271-13358eba-1e34-11e8-9519-ec454bb7a567.png'} /> */}
+            <Popup>
+              <span>{children}</span>
+            </Popup>
+          </Marker>
+        ))}
       </Map>
     )
   }

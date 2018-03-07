@@ -2,37 +2,37 @@ const app = require("express").Router();
 const queries = require("../queries/locations");
 
 
-app.get("/", (request, response) => {
+app.get("/", (request, response, next) => {
     queries.list().then(data => {
       console.log('data', data);
         response.json(data);
-    }).catch(console.error);
+    }).catch(next);
 });
 
-app.get("/:id", (request, response) => {
+app.get("/:id", (request, response, next) => {
     queries.read(request.params.id).then(locations => {
         locations
             ? response.json({locations})
             : response.sendStatus(404)
-    }).catch(console.error);
+    }).catch(next);
 });
 
-app.post("/", (request, response) => {
+app.post("/", (request, response, next) => {
     queries.create(request.body).then(locations => {
         response.status(201).json({locations});
-    }).catch(console.error);
+    }).catch(next);
 });
 
-app.delete("/:id", (request, response) => {
+app.delete("/:id", (request, response, next) => {
     queries.delete(request.params.id).then(() => {
         response.sendStatus(204);
-    }).catch(console.error);
+    }).catch(next);
 });
 
-app.put("/:id", (request, response) => {
+app.put("/:id", (request, response, next) => {
     queries.update(request.params.id, request.body).then(locations => {
         response.json({locations});
-    }).catch(console.error);
+    }).catch(next);
 });
 
 module.exports = app

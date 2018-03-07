@@ -18,6 +18,7 @@ app.get("/:id", (request, response) => {
 });
 
 app.post("/", (request, response) => {
+    console.log("post route working")
     queries.create(request.body).then(posting_info => {
         response.status(201).json({posting_info});
     }).catch(console.error);
